@@ -1,19 +1,13 @@
 # Final Project Template
 
-The final project for this course has several steps that you must complete. 
-To give you an overview of the whole project, all the high-level steps are listed below. 
-The project is then divided into several smaller labs that give the detailed instructions for each step. 
 You must complete all the labs to successfully complete the project.
 
 ## Project Breakdown
 
-**Prework: Sign up for IBM Cloud account and create a Watson Natural language Understanding service**
-1. Create an IBM cloud account if you don't have one already.
-2. Create an instance of the Natural Language Understanding (NLU) service.
 
 **Fork the project Github repository with a project then build and deploy the template project**
 1. Fork the repository in your account
-2. Clone the repository in the theia lab environment
+2. Clone the repository 
 3. Create static pages to finish the user stories
 4. Deploy the application on IBM Cloud
 
