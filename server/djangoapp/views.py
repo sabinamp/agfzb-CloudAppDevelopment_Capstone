@@ -11,6 +11,8 @@ import logging
 import json
 
 # Get an instance of a logger
+from .models import CarDealer
+
 logger = logging.getLogger(__name__)
 
 
@@ -47,6 +49,8 @@ def get_dealerships(request):
 
 # Create a `get_dealer_details` view to render the reviews of a dealer
 def get_dealer_details(request, dealer_id):
+    dealer = get_object_or_404(CarDealer, pk=dealer_id)
+    # context = {"dealer": dealer}
     context = {}
     if request.method == "GET":
         return render(request, 'djangoapp/dealer_details.html', context)
