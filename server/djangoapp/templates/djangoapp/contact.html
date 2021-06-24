@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+     {% load static %}
+     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <meta charset="UTF-8">
-    <title>Dealership Review</title>
-    {% load static %}
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <title>Contact</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </head>
-
-    <body>
-
-    <!--Add a nav bar here -->
+<body>
    <nav class="navbar navbar-expand-lg navbar-light bg-dark">
       <div class="container-fluid">
         <a class="navbar-brand text-white" href="#">Best Cars Online</a>
@@ -25,27 +25,23 @@
               <a class="nav-link text-white" href="../about">About Us</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link text-white"  href="../contact">Contact</a>
+              <a class="nav-link text-white active" aria-current="page" href="#">Contact</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link text-white active" aria-current="page" href="#" >Dealers</a>
+              <a class="nav-link text-white disabled" href="#" tabindex="-1" aria-disabled="true">Dealers</a>
             </li>
           </ul>
         </div>
       </div>
     </nav>
-    <!-- Add reviews as cards -->
+     <div class="container-fluid">
+         <h1>
+        Welcome to Best Cars dealership.
+        </h1>
+        <p>We sell domestic and imported cars at reasonable prices.</p>
+        <p> Address:  North America. </p>
+        <p>Telephone number: +1123456789</p>
+     </div>
 
-    <div class="container-fluid">
-         <h2>{{ dealer.name }}</h2>
-          <div class="card-columns-vertical">
-                <div class="card mt-1">
-                        <div class="card-header"><h5>Review {{review.order|add:1}}: {{review.title}}</h5></div>
-                        <div class="card-body">{{review.content}}</div>
-                 </div>
-
-          </div>
-    </div>
-    </body>
-
+</body>
 </html>
