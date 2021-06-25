@@ -10,6 +10,7 @@ You must complete all the labs to successfully complete the project.
 2. Clone the repository 
 3. Create static pages to finish the user stories
 4. Deploy the application on IBM Cloud
+* deployed at https://dealers4x.eu-gb.cf.appdomain.cloud/djangoapp/
 
 **Add user management to the application**
 1. Implement user management using the Django user authentication system.
