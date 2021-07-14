@@ -23,31 +23,31 @@ class CarMake(models.Model):
                "Description: " + self.description
 
 
-# <HINT> Create a plain Python class `CarDealer` to hold dealer data
+# plain Python class `CarDealer` to hold dealer data
+class CarDealer:
 
-class CarDealer(models.Model):
-    user = models.ForeignKey(
-        settings.AUTH_USER_MODEL,
-        on_delete=models.CASCADE,
-    )
-    DEALER = 'Car Dealer'
-    DATABASE_ADMIN = 'Database Admin'
-    OCCUPATION_CHOICES = [
-        (DEALER, 'Car Dealer'),
-        (DATABASE_ADMIN, 'Database Admin')
-    ]
-    occupation = models.CharField(
-        null=False,
-        max_length=20,
-        choices=OCCUPATION_CHOICES,
-        default=DEALER
-    )
-    social_link = models.URLField(max_length=200)
-    city = models.CharField(null=False, max_length=100, default="New York")
+    def __init__(self, address, city, full_name, _id, lat, long, short_name, st, zip):
+        # Dealer address
+        self.address = address
+        # Dealer city
+        self.city = city
+        # Dealer Full Name
+        self.full_name = full_name
+        # Dealer id
+        self.id = id
+        # Location lat
+        self.lat = lat
+        # Location long
+        self.long = long
+        # Dealer short name
+        self.short_name = short_name
+        # Dealer state
+        self.st = st
+        # Dealer zip
+        self.zip = zip
 
     def __str__(self):
-        return "Dealer " + self.user.username + "," + \
-               self.city
+        return "Dealer name: " + self.full_name
 
 
 #   Car Model model `class CarModel(models.Model):`:
@@ -95,10 +95,21 @@ class CarModel(models.Model):
 
 
 # a plain Python class `DealerReview` to hold review data
-class DealerReview(models.Model):
-    dealer = models.ForeignKey(CarDealer, on_delete=models.CASCADE)
-    review = models.TextField()
-    sentiment = models.TextField(blank=True)
+class DealerReview:
+    """ DealerReview Class"""
+
+    def __init__(self, car_make, car_model, car_year, dealership, _id, name, purchase,
+                 purchase_date, review, sentiment):
+        self.id = id
+        self.name = name
+        self.dealership = dealership
+        self.review = review
+        self.purchase = purchase
+        self.purchase_date = purchase_date
+        self.car_make = car_make
+        self.car_model = car_model
+        self.car_year = car_year
+        self.sentiment = sentiment
 
     def __str__(self):
         return "Review: " + self.review
