@@ -17,26 +17,43 @@
 }
 
 function formatEntries(params){
-  if(!params.rows){
+   if(!params.docs){
         return Promise.reject({ error: "Something went wrong on the server"});
-    }else if(params.rows.length == 0){
+    }else if(params.docs.length == 0){
        return Promise.reject({ error: "The database is empty"});
     }
-	return {
-        entries: params.rows.map((row) => {
+    return {
+        entries: params.docs.map((doc) => {
          return {
-            _id: row.doc._id,
-            _rev: row.doc._rev,
-            city: row.doc.city,
-            st: row.doc.st,
-            state: row.doc.state,
-            address: row.doc.address,
-            zip: row.doc.zip,
-            lat: row.doc.lat,
-            long: row.doc.long,
-            short_name: row.doc.short_name,
-            full_name: row.doc.full_name,
+            _id: doc._id,
+            _rev: doc._rev,
+            city: doc.city,
+            st: doc.st,
+            state: doc.state,
+            address: doc.address,
+            zip: doc.zip,
+            lat: doc.lat,
+            long: doc.long,
+            short_name: doc.short_name,
+            full_name: doc.full_name,
          }
         })
     };
-  }
+}
+
+  const formatDealership = (doc)=>{
+    return {
+            _id: doc._id,
+            _rev: doc._rev,
+            city: doc.city,
+            st: doc.st,
+            state: doc.state,
+            address: doc.address,
+            zip: doc.zip,
+            lat: doc.lat,
+            long: doc.long,
+            short_name: doc.short_name,
+            full_name: doc.full_name,
+         };
+}
+
