@@ -3,7 +3,7 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404, render, redirect
 # from .models import related models
-# from .restapis import related methods
+from .localsettings import URL_DEALERSHIP_API, URL_REVIEW_API
 from django.contrib.auth import login, logout, authenticate
 from django.contrib import messages
 from datetime import datetime
@@ -12,6 +12,7 @@ import json
 
 # Get an instance of a logger
 from .models import CarDealer
+from .restapis import get_dealers_from_cf
 
 logger = logging.getLogger(__name__)
 
@@ -50,6 +51,7 @@ def logout_request(request):
     logout(request)
     return redirect('djangoapp:index')
 
+
 # Create a `registration_request` view to handle sign up request
 def registration_request(request):
     context = {}
@@ -79,8 +81,10 @@ def registration_request(request):
 
 # Update the `get_dealerships` view to render the index page with a list of dealerships
 def get_dealerships(request):
-    context = {}
+    """ Dealerships View """
     if request.method == "GET":
+        dealerships = get_dealers_from_cf(URL_DEALERSHIP_API)
+        context = {"dealerships": dealerships}
         return render(request, 'djangoapp/index.html', context)
 
 

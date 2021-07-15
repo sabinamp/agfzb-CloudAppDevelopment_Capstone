@@ -25,24 +25,22 @@ class CarMake(models.Model):
 
 # plain Python class `CarDealer` to hold dealer data
 class CarDealer:
-
-    def __init__(self, address, city, full_name, _id, lat, long, short_name, st, zip):
-        # Dealer address
-        self.address = address
+    def __init__(self, _id, city, st, address, full_name, short_name, lat, long, zip):
+        # Dealer id
+        self.id = _id
         # Dealer city
         self.city = city
+        # Dealer state
+        self.st = st
+        self.address = address
         # Dealer Full Name
         self.full_name = full_name
-        # Dealer id
-        self.id = id
+        # Dealer short name
+        self.short_name = short_name
         # Location lat
         self.lat = lat
         # Location long
         self.long = long
-        # Dealer short name
-        self.short_name = short_name
-        # Dealer state
-        self.st = st
         # Dealer zip
         self.zip = zip
 
@@ -80,7 +78,8 @@ class CarModel(models.Model):
     ]
     car_make = models.ForeignKey(CarMake, on_delete=models.CASCADE)
     name = models.CharField(null=False, max_length=30, default='Sedan')
-    dealer_id = models.ForeignKey(CarDealer, on_delete=models.DO_NOTHING, null=True, blank=True)
+    # dealer_id = models.ForeignKey(CarDealer, on_delete=models.DO_NOTHING, null=True, blank=True)
+    dealer_id = models.IntegerField(null=False, default=15)
     year = models.IntegerField(choices=YEAR_CHOICES, default=now().year, null=False)
     type = models.CharField(max_length=15, choices=MODEL_TYPES, default=SEDAN)
 

@@ -66,6 +66,9 @@
      <div class="container-fluid">
          <div class=fs-1"><h1>Welcome to Best Cars dealership.</h1></div>
      </div>
+    <div class="card-body">
+     {% include 'djangoapp/list.html' with dealer_list=dealerships %}
+    </div>
     </body>
 
 </html>
