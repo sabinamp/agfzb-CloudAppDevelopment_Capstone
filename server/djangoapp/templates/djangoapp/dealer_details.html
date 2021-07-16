@@ -19,13 +19,13 @@
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav">
              <li class="nav-item">
-              <a class="nav-link text-white" href="../">Home</a>
+              <a class="nav-link text-white" href="{% url 'djangoapp:index' %}">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link text-white" href="../about">About Us</a>
+              <a class="nav-link text-white" href="{% url 'djangoapp:about' %}">About Us</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link text-white"  href="../contact">Contact</a>
+              <a class="nav-link text-white"  href="{% url 'djangoapp:contact' %}">Contact</a>
             </li>
             <li class="nav-item">
               <a class="nav-link text-white active" aria-current="page" href="#" >Dealership Review</a>
@@ -57,14 +57,46 @@
     <!-- Add reviews as cards -->
 
     <div class="container-fluid">
-         <h2>{{ dealer.name }}</h2>
-          <div class="card-columns-vertical">
-                <div class="card mt-1">
-                        <div class="card-header"><h5>Review {{review.order|add:1}}: {{review.title}}</h5></div>
-                        <div class="card-body">{{review.content}}</div>
-                 </div>
-
-          </div>
+         <h2>Reviews for dealership {{dealer_id}}</h2>
+          <div class="row">
+    {% for review in reviews %}
+    <div class="col-lg-4 col-6 my-3">
+        <div class="card h-100 bg-orange text-white">
+            <p class="card-header bg-orange text-white">{{ review.name }} for dealership {{review.dealership}}</p>
+            <div class="card-body bg-dark text-white">
+                <div class="row">
+                    <div class="col-3 text-left"></div>
+<!--                    <div class="col-3 text-left">
+                        {% if review.sentiment == "positive" %}
+                        <figure class="card-img" alt="Positive"><i class="far fa-3x text-success fa-grin"></i></figure>
+                        {% elif review.sentiment == "negative" %}
+                        <figure class="card-img" alt="Positive"><i class="far fa-3x text-danger fa-frown"></i></figure>
+                        {% elif review.sentiment == "neutral" %}
+                        <figure class="card-img" alt="Positive"><i class="far fa-3x text-warning fa-meh"></i></figure>
+                        {% else %}
+                        <figure class="card-img" alt="Positive"><i class="far fa-3x text-warning fa-meh"></i></figure>
+                        {% endif %}
+                    </div>-->
+                    <div class="col-9 text-right">
+                        {% if review.purchase == True %}
+                        <h5 class="card-title">{{ review.car_make }}, {{ review.car_model }}</h5>
+                        <h5 class="card-title">{{ review.car_year }}</h5>
+                        {% else %}
+                        <h5 class="card-title">Not purchased</h5>
+                        <h5 class="card-title">No additional info</h5>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 text-center">
+                        <p class="card-text font-italic">"{{ review.review }}"</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+    </div>
     </div>
     </body>
 
