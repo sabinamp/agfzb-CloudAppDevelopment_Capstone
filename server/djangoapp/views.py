@@ -83,8 +83,7 @@ def registration_request(request):
 def get_dealerships(request):
     """ Dealerships View """
     if request.method == "GET":
-        dealerships = get_dealers_from_cf(URL_DEALERSHIP_API, headers={'Content-Type': 'application/json',
-                                                                       'HTTP_ACCEPT': 'application/json'})
+        dealerships = get_dealers_from_cf(URL_DEALERSHIP_API)
         context = {"dealerships": dealerships}
         return render(request, 'djangoapp/index.html', context)
 
