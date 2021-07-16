@@ -22,6 +22,7 @@ def get_request(url, **kwargs):
     json_data = json.loads(response.text)
     return json_data
 
+
 # Create a `post_request` to make HTTP POST requests
 # e.g., response = requests.post(url, params=kwargs, json=payload)
 
@@ -39,19 +40,17 @@ def get_dealers_from_cf(url, **kwargs):
         dealers = json_result["entries"]
         # For each dealer object
         for dealer in dealers:
+            print(dealer)
             # Get its content in `doc` object
-            dealer_obj = CarDealer(_id=dealer["_id"],
-                                   city=dealer["city"],
-                                   st=dealer["st"],
-                                   address=dealer["address"],
-                                   full_name=dealer["full_name"],
-                                   short_name=dealer["short_name"],
-                                   lat=dealer["lat"],
-                                   long=dealer["long"],
-                                   zip=dealer["zip"]
+            dealer_obj = CarDealer(_id=dealer["_id"], address=dealer.get("address"), city=dealer.get('city'),
+                                   st=dealer.get("st"),
+                                   full_name=dealer.get("full_name"),
+                                   short_name=dealer.get("short_name"),
+                                   lat=dealer.get("lat"),
+                                   long=dealer.get("long"),
+                                   zip=dealer.get("zip")
                                    )
             results.append(dealer_obj)
-
     return results
 
 # Create a get_dealer_reviews_from_cf method to get reviews by dealer id from a cloud function
