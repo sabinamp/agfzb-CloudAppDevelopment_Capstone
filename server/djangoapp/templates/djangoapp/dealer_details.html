@@ -59,8 +59,14 @@
         {% else %}
         <h2>Reviews for dealership {{dealer_id}}</h2>
         <p>There are no reviews for the dealership {{ dealer_id }} yet, but you can be the first reviewer</p>
+           {% if user.is_authenticated %}
+            <a href="{% url 'djangoapp:add_review' dealer_id %}" class="btn bg-dark text-white my-auto ml-auto">Click here to write a review</a>
+            {% else %}
+            <p>Please login to write a review.</p>
         {% endif %}
-          <div class="row">
+        {% endif %}
+        {% if reviews %}
+        <div class="row">
         {% for review in reviews %}
         <div class="col-lg-4 col-6 my-3">
             <div class="card h-100 bg-orange text-white">
@@ -90,6 +96,7 @@
     </div>
     {% endfor %}
     </div>
+    {% endif %}
     </div>
     </body>
 

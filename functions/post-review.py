@@ -35,6 +35,7 @@ def main(dict):
         name = rew["name"]
         dealer_id = rew["dealership"]
         review = rew["review"]
+        purchase = rew["purchase"]
         car_make = rew["car_make"]
         car_year = rew["car_year"]
         car_model = rew["car_model"]
@@ -57,10 +58,11 @@ def main(dict):
                     "name": name,
                     "dealership": dealer_id,
                     "review": review,
-                    "purchase": False,
+                    "purchase": purchase,
                     "purchase_date": purchase_date,
                     "car_make": car_make,
                     "car_model": car_model,
                     "car_year": car_year
                 }
             }
+

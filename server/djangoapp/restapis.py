@@ -34,6 +34,19 @@ def get_request(url, **kwargs):
 
 # Create a `post_request` to make HTTP POST requests
 # e.g., response = requests.post(url, params=kwargs, json=payload)
+def post_request(url, json_payload, **kwargs):
+    try:
+        response = requests.post(url, json=json_payload, params=kwargs)
+    except:
+        print("Network exception occurred")
+    json_data = json.loads(response.text)
+    return json_data
+
+
+def add_dealer_review_to_db(review_post):
+    """ Add Review """
+    json_payload = {"review": review_post}
+    return post_request(URL_REVIEW_API, json_payload=json_payload)
 
 
 # get_dealers_from_cf method to get dealers from a cloud function
@@ -92,13 +105,11 @@ def get_dealer_reviews_from_cf(dealer_id):
     json_result = get_request(URL_REVIEW_API, dealerId=dealer_id)
     if json_result:
         # Get the row list in JSON as reviews
-        print(json_result)
         if json_result.get("error"):
             return []
         else:
             reviews = json_result.get("entries")
             for rev in reviews:
-                print(rev)
                 review_obj = DealerReview(_id=rev.get("_id"),
                                           car_make=rev.get("car_make"),
                                           car_model=rev.get("car_model"),
