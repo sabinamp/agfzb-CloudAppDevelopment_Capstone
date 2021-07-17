@@ -12,7 +12,6 @@ from django.conf import settings
 # - Any other fields you would like to include in car make model
 # - __str__ method to print a car make object
 
-
 class CarMake(models.Model):
     """ CarMake Class"""
     name = models.CharField(null=False, max_length=30, default='car make')
@@ -98,7 +97,7 @@ class DealerReview:
     """ DealerReview Class"""
 
     def __init__(self, _id, car_make, car_model, car_year, dealership, name, purchase,
-                 purchase_date, review):
+                 purchase_date, review, sentiment):
         self.id = _id
         self.name = name
         self.dealership = dealership
@@ -108,7 +107,7 @@ class DealerReview:
         self.car_make = car_make
         self.car_model = car_model
         self.car_year = car_year
-        # self.sentiment = sentiment
+        self.sentiment = sentiment
 
     def __str__(self):
-        return "Review: " + self.review
+        return "Review: " + self.review + "Sentiment: " + self.sentiment

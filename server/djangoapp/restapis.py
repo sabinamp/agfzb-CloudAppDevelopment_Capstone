@@ -4,7 +4,8 @@ import requests
 import json
 from .models import CarDealer, DealerReview
 from requests.auth import HTTPBasicAuth
-from .localsettings import URL_DEALERSHIP_API, URL_REVIEW_API
+from .localsettings import URL_DEALERSHIP_API, URL_REVIEW_API, NATURAL_LANGUAGE_UNDERSTANDING_URL, \
+    NATURAL_LANGUAGE_UNDERSTANDING_APIKEY
 
 
 # Create a `get_request` to make HTTP GET requests
@@ -14,9 +15,14 @@ from .localsettings import URL_DEALERSHIP_API, URL_REVIEW_API
 def get_request(url, **kwargs):
     print("GET from {} ".format(url))
     print(kwargs)
+    api_key = kwargs.get('api_key')
     try:
-        # Call get method of requests library with URL and parameters
-        response = requests.get(url, params=kwargs, headers={'Content-Type': 'application/json'})
+        if api_key:
+            response = requests.get(url, params=kwargs, headers={'Content-Type': 'application/json'},
+                                    auth=HTTPBasicAuth('apikey', api_key))
+        else:
+            # Call get method of requests library with URL and parameters, no authentication GET
+            response = requests.get(url, params=kwargs, headers={'Content-Type': 'application/json'})
 
     except:
         print("Network exception occurred")
@@ -101,11 +107,19 @@ def get_dealer_reviews_from_cf(dealer_id):
                                           name=rev.get("name"),
                                           purchase=rev.get("purchase"),
                                           purchase_date=rev.get("purchase_date"),
-                                          review=rev.get("review"))
+                                          review=rev.get("review"),
+                                          sentiment=analyze_review_sentiments(rev["review"]))
                 results.append(review_obj)
     return results
 
+
 # Create an `analyze_review_sentiments` method to call Watson NLU and analyze text
-# def analyze_review_sentiments(text):
 # - Call get_request() with specified arguments
 # - Get the returned sentiment label such as Positive or Negative
+def analyze_review_sentiments(text):
+    api_key = NATURAL_LANGUAGE_UNDERSTANDING_APIKEY
+    json_result = get_request(NATURAL_LANGUAGE_UNDERSTANDING_URL, text=text, api_key=api_key)
+
+    if json_result:
+        sentiment_result = json_result.get('label', 'neutral')
+    return sentiment_result
