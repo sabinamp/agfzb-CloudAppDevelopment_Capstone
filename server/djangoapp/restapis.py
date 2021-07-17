@@ -34,7 +34,7 @@ def get_request(url, **kwargs):
 # def get_dealers_from_cf(url, **kwargs):
 # - Call get_request() with specified arguments
 # - Parse JSON results into a CarDealer object list
-def get_dealers_from_cf( **kwargs):
+def get_dealers_from_cf(**kwargs):
     results = []
     # Call get_request with a URL parameter
     json_result = get_request(URL_DEALERSHIP_API)
@@ -86,20 +86,23 @@ def get_dealer_reviews_from_cf(dealer_id):
     json_result = get_request(URL_REVIEW_API, dealerId=dealer_id)
     if json_result:
         # Get the row list in JSON as reviews
-        reviews = json_result["entries"]
-
-        for rev in reviews:
-            print(rev)
-            review_obj = DealerReview(_id=rev.get("_id"),
-                                      car_make=rev.get("car_make"),
-                                      car_model=rev.get("car_model"),
-                                      car_year=rev.get("car_year"),
-                                      dealership=rev.get("dealership"),
-                                      name=rev.get("name"),
-                                      purchase=rev.get("purchase"),
-                                      purchase_date=rev.get("purchase_date"),
-                                      review=rev.get("review"))
-            results.append(review_obj)
+        print(json_result)
+        if json_result.get("error"):
+            return []
+        else:
+            reviews = json_result.get("entries")
+            for rev in reviews:
+                print(rev)
+                review_obj = DealerReview(_id=rev.get("_id"),
+                                          car_make=rev.get("car_make"),
+                                          car_model=rev.get("car_model"),
+                                          car_year=rev.get("car_year"),
+                                          dealership=rev.get("dealership"),
+                                          name=rev.get("name"),
+                                          purchase=rev.get("purchase"),
+                                          purchase_date=rev.get("purchase_date"),
+                                          review=rev.get("review"))
+                results.append(review_obj)
     return results
 
 # Create an `analyze_review_sentiments` method to call Watson NLU and analyze text

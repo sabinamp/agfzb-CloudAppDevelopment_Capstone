@@ -27,9 +27,6 @@
             <li class="nav-item">
               <a class="nav-link text-white"  href="{% url 'djangoapp:contact' %}">Contact</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link text-white active" aria-current="page" href="#" >Dealership Review</a>
-            </li>
           </ul>
         </div>
         <ul class="nav navbar-nav navbar-right">
@@ -57,12 +54,17 @@
     <!-- Add reviews as cards -->
 
     <div class="container-fluid">
+        {% if reviews %}
          <h2>Reviews for dealership {{dealer_id}}</h2>
+        {% else %}
+        <h2>Reviews for dealership {{dealer_id}}</h2>
+        <p>There are no reviews for the dealership {{ dealer_id }} yet, but you can be the first reviewer</p>
+        {% endif %}
           <div class="row">
-    {% for review in reviews %}
-    <div class="col-lg-4 col-6 my-3">
-        <div class="card h-100 bg-orange text-white">
-            <p class="card-header bg-orange text-white">{{ review.name }} for dealership {{review.dealership}}</p>
+        {% for review in reviews %}
+        <div class="col-lg-4 col-6 my-3">
+            <div class="card h-100 bg-orange text-white">
+            <p class="card-header bg-primary text-white">{{ review.name }} for dealership {{review.dealership}}</p>
             <div class="card-body bg-dark text-white">
                 <div class="row">
                     <div class="col-3 text-left"></div>
