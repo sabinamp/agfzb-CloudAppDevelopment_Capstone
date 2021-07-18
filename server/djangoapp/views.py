@@ -1,3 +1,5 @@
+import random
+
 from django.shortcuts import render
 from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth.models import User
@@ -101,24 +103,26 @@ def get_dealer_details(request, dealer_id):
 # Create a `add_review` view to submit a review
 def add_review(request, dealer_id):
     user = request.user
+    cars = CarModel.objects.filter(dealer_id=dealer_id)
     if request.method == "GET":
-        context = {"dealer_id": dealer_id}
+        context = {"dealer_id": dealer_id, "cars": cars}
         add_review_view = render(request, 'djangoapp/add_review.html', context)
-        return add_review_view
+
     if request.method == "POST":
         form = request.POST
         review = {
             "name": form["name"],
             "dealership": dealer_id,
             "review": form["review"],
-            "purchase": True,
-            "purchase_date": form["purchasedate"],
-            "car_make": form["car_make"],
-            "car_model": form["car_model"],
-            "car_year": form["car_year"]
         }
-        print(review)
+        if form.get("purchasecheck"):
+            review["purchase"] = True
+            review["purchase_date"] = form["purchasedate"]
+            carmodel = get_object_or_404(CarModel, pk=form["car"])
+            review["car_make"] = carmodel.car_make.name
+            review["car_model"] = carmodel.name
+            review["car_year"] = carmodel.year
         json_result = add_dealer_review_to_db(review)
-        if json_result.get("ok"):
-            return redirect('djangoapp:dealer_details', dealer_id=dealer_id)
-
+        print(json_result)
+        add_review_view = redirect('djangoapp:dealer_details', dealer_id=dealer_id)
+    return add_review_view

@@ -73,11 +73,12 @@ class CarModel(models.Model):
         (SPORTS, 'SPORTS CAR'),
         (PASSAT, 'PASSAT'),
         (SALON, 'SALON'),
-        (COUPE, 'COUPE')
+        (COUPE, 'COUPE'),
+
     ]
+    id = models.SmallAutoField(primary_key=True)
     car_make = models.ForeignKey(CarMake, on_delete=models.CASCADE)
     name = models.CharField(null=False, max_length=30, default='Sedan')
-    # dealer_id = models.ForeignKey(CarDealer, on_delete=models.DO_NOTHING, null=True, blank=True)
     dealer_id = models.IntegerField(null=False, default=15)
     year = models.IntegerField(choices=YEAR_CHOICES, default=now().year, null=False)
     type = models.CharField(max_length=15, choices=MODEL_TYPES, default=SEDAN)
