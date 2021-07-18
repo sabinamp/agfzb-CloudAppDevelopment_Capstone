@@ -5,7 +5,7 @@
             <thead>
                 <tr>
                     <th data-field="id">Identifier</th>
-                    <th data-field="name">Dealer Short Name</th>
+                    <th data-field="name">Dealer Name</th>
                     <th data-field="city">City</th>
                     <th data-field="address" class="d-none d-lg-table-cell">Address</th>
                     <th data-field="zip" class="d-none d-lg-table-cell">Zip</th>
@@ -16,7 +16,7 @@
                 {% for dealer in dealer_list %}
                 <tr>
                     <td>{{ dealer.id }}</td>
-                    <td><a href="{% url 'djangoapp:dealer_details' dealer.id %}">{{dealer.short_name}}
+                    <td><a href="{% url 'djangoapp:dealer_details' dealer.id %}">{{dealer.full_name}}
                     </a></td>
                     <td>{{ dealer.city }}</td>
                     <td>{{ dealer.address}}</td>

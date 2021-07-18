@@ -69,11 +69,19 @@
         <div class="row">
         {% for review in reviews %}
         <div class="col-lg-4 col-6 my-3">
-            <div class="card h-100 bg-orange text-white">
-            <p class="card-header bg-primary text-white">{{ review.name }} for dealership {{review.dealership}}</p>
+            <div class="card card-columns h-100 text-white">
+            <p class="card-header bg-primary text-white">
+                {{ review.name }} for dealership {{review.dealership}}</p>
             <div class="card-body bg-dark text-white">
                 <div class="row">
-                    <div class="col-12 text-right">
+                    <div class="col-3 text-left">
+                          <p class="card-title">
+                        {% if review.sentiment %}
+                            <img class="card-img-left img-fluid" src="{{MEDIA_URL}}/emoji/{{ review.sentiment }}.png" alt="positive"/>
+                        {% endif %}
+                        </p>
+                    </div>
+                    <div class="col-9 text-right">
                         {% if review.purchase == True %}
                         <h5 class="card-title">{{ review.car_make }}, {{ review.car_model }}</h5>
                         <h5 class="card-title">{{ review.car_year }}</h5>
@@ -81,14 +89,11 @@
                         <h5 class="card-title">Not purchased</h5>
                         <h5 class="card-title">No additional info</h5>
                         {% endif %}
-                        {% if review.sentiment %}
-                        <h5 class="card-title">{{ review.review }} </h5>
-                        {% endif %}
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-12 text-center">
-                        <p class="card-text font-italic"> "NLU Sentiment: {{review.sentiment}}"</p>
+                        <p class="card-text font-italic"> "{{ review.review }}"</p>
                     </div>
                 </div>
             </div>
