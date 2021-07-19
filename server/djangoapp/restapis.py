@@ -4,7 +4,7 @@ import requests
 import json
 from .models import CarDealer, DealerReview
 from requests.auth import HTTPBasicAuth
-from .localsettings import URL_DEALERSHIP_API, URL_REVIEW_API, NATURAL_LANGUAGE_UNDERSTANDING_URL, \
+from .local_settings import URL_DEALERSHIP_API, URL_REVIEW_API, NATURAL_LANGUAGE_UNDERSTANDING_URL, \
     NATURAL_LANGUAGE_UNDERSTANDING_APIKEY
 
 
