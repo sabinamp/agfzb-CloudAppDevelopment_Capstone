@@ -1,3 +1,12 @@
+# Technologies Used
+* Django
+* Bootstrap
+* IBM Cloud Foundry
+* IBM Cloudant NO-SQl Database
+* IBM Cloud Functions
+* IBM API Gateway
+* IBM Watson NLU
+
 # Final Project Template
 
 You must complete all the labs to successfully complete the project.
