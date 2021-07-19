@@ -4,8 +4,11 @@ import requests
 import json
 from .models import CarDealer, DealerReview
 from requests.auth import HTTPBasicAuth
-from .links import URL_DEALERSHIP_API, URL_REVIEW_API, NATURAL_LANGUAGE_UNDERSTANDING_URL, \
-    NATURAL_LANGUAGE_UNDERSTANDING_APIKEY
+URL_DEALERSHIP_API = "https://9792e4ea.eu-gb.apigw.appdomain.cloud/api/dealership"
+URL_REVIEW_API = "https://9792e4ea.eu-gb.apigw.appdomain.cloud/api/review"
+URL_GET_REVIEW_API = "https://9792e4ea.eu-gb.apigw.appdomain.cloud/api/review/"
+NATURAL_LANGUAGE_UNDERSTANDING_APIKEY="6Zdoy5HDOV9-mF8UO67TJFwAmBhHlmR6avKdI2eJli4f"
+NATURAL_LANGUAGE_UNDERSTANDING_URL="https://api.us-south.natural-language-understanding.watson.cloud.ibm.com/instances/"
 
 
 # Create a `get_request` to make HTTP GET requests
