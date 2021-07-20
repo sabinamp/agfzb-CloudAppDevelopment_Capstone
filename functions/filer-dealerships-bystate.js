@@ -6,7 +6,7 @@ function main(params) {
     if (!params.st) {
         return Promise.reject({ error: 'No state has been given.'});
     }
-    else if (states.indexOf(params.st) === -1){
+    else if (!states.includes(params.st)){
         return Promise.reject({ error: "The state doesn't exist."});
     }
 	return {
