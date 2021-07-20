@@ -11,8 +11,9 @@
 
 def main(dict):
     dealer_id = dict['dealerId']
+    dealer_id = int(dealer_id)
     if dealer_id:
-        return get_query(int(dealer_id))
+        return get_query(dealer_id)
     else:
         return {'error': 'dealerId does not exist'}
 
