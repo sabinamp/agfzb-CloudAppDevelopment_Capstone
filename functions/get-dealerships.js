@@ -17,16 +17,19 @@
 }
 
 function formatEntries(params) {
+    results=[];
     if(!params){
         return Promise.reject({ error: "Something went wrong on the server"});
-    }else if(params.rows.length === 0){
-       return Promise.reject({ error: "The database is empty"});
-    }
-  results=[];
+    }else if(params.rows){
+       if(params.rows.length === 0){
+         return Promise.reject({ error: "The database is empty"});
+        }else{
+                for (let i=0; i< params.rows.length; i++){
+                    let dealership = formatDealership(params.rows[i].doc);
+                    results.push(dealership);
+             }
+        }
 
-    for (let i=0; i< params.rows.length; i++){
-        let dealership = formatDealership(params.rows[i].doc);
-        results.push(dealership);
     }
     return {
         'entries': results
