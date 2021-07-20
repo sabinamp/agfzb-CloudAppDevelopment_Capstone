@@ -12,6 +12,6 @@ fi
 
 # Make migrations and migrate the database.
 echo "Making migrations and migrating the database. "
-python3 manage.py makemigrations main --noinput
-python3 manage.py migrate --run-syncdb --noinput
+python manage.py makemigrations main --noinput
+python manage.py migrate --noinput
 exec "$@"
