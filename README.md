@@ -6,7 +6,7 @@
 * IBM Cloud Functions
 * IBM API Gateway
 * IBM Watson NLU
-
+* deployed on Cloud Foundry at https://dealers4x.eu-gb.cf.appdomain.cloud/djangoapp/
 # Final Project Template
 
 You must complete all the labs to successfully complete the project.
@@ -19,7 +19,7 @@ You must complete all the labs to successfully complete the project.
 2. Clone the repository 
 3. Create static pages to finish the user stories
 4. Deploy the application on IBM Cloud
-* deployed at https://dealers4x.eu-gb.cf.appdomain.cloud/djangoapp/
+
 
 **Add user management to the application**
 1. Implement user management using the Django user authentication system.
@@ -33,7 +33,7 @@ You must complete all the labs to successfully complete the project.
 **Add dynamic pages with Django templates**
 1. Create a page that shows all the dealers
 2. Create a page that show reviews for a selected dealer
-3. Create a page that let's the end user add a review for a selected dealer
+3. Create a page that lets the end user add a review for a selected dealer
 
 **Containerize your application**
 1. Add deployment artifacts to your application
