@@ -16,11 +16,14 @@
     };
 }
 
-function formatEntries(params) {
+function formatDealershipsEntries(params) {
        results=[];
     if(!params){
         return Promise.reject({ error: "Something went wrong on the server"});
-    }else if(params.rows){
+    }else if(!params.rows){
+         return Promise.reject({ error: "Something went wrong on the server."});
+    }
+    else if(params.rows){
         if(params.rows.length === 0){
             return Promise.reject({ error: "The database is empty"});
         }else{
@@ -40,6 +43,7 @@ const formatDealership = (doc)=>{
     return {_id: doc._id,
             city: doc.city,
             st: doc.st,
+            id: doc.id,
             state: doc.state,
             address: doc.address,
             zip: doc.zip,
@@ -49,3 +53,4 @@ const formatDealership = (doc)=>{
             full_name: doc.full_name,
          };
 }
+
